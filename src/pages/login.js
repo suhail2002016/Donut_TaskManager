@@ -1,45 +1,155 @@
-// src/pages/Login.jsx
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+// // src/Login.js
+// import React, { useState } from 'react';
+// import '../Styles/login.css';
+
+// const Login = () => {
+//   const [role, setRole] = useState('superadmin');
+//   const [email, setEmail] = useState('');
+//   const [password, setPassword] = useState('');
+//   const [error, setError] = useState('');
+
+//   const handleLogin = (e) => {
+//     e.preventDefault();
+//     setError('');
+
+//     if (!email || !password) {
+//       setError('Please enter both email and password.');
+//       return;
+//     }
+
+//     // Simulate navigation to dashboard
+//     if (role === 'superadmin') {
+//       window.location.href = '/admin/dashboard';
+//     } else {
+//       window.location.href = '/user/dashboard';
+//     }
+//   };
+
+//   return (
+//     <div className="login-container">
+//       <div className="login-box">
+//         <div className="logo">🍩 Donut Tech</div>
+//         <h2>Login to your Account</h2>
+
+//         <div className="role-toggle">
+//           <button
+//             className={role === 'superadmin' ? 'active' : ''}
+//             onClick={() => setRole('superadmin')}
+//           >
+//             Super Admin
+//           </button>
+//           <button
+//             className={role === 'user' ? 'active' : ''}
+//             onClick={() => setRole('user')}
+//           >
+//             User
+//           </button>
+//         </div>
+
+//         <form onSubmit={handleLogin}>
+//           <input
+//             type="email"
+//             placeholder="Email Id"
+//             value={email}
+//             onChange={(e) => setEmail(e.target.value)}
+//             className="input-field"
+//           />
+//           <input
+//             type="password"
+//             placeholder="Password"
+//             value={password}
+//             onChange={(e) => setPassword(e.target.value)}
+//             className="input-field"
+//           />
+
+//           {error && <p className="error">{error}</p>}
+
+//           <button type="submit" className="login-btn">Login</button>
+//         </form>
+
+//         <p className="forgot" tabIndex="0">I forgot my credentials</p>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Login;
+
+
+import React, { useState } from 'react';
+import '../Styles/login.css';
+import characterImg from '../assets/3d-portrait-businessman.png';
 
 function Login() {
-  const [email, setEmail] = useState('');
-  const [role, setRole] = useState('user'); // default to user
-  const navigate = useNavigate();
+    const [role, setRole] = useState('superadmin');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
 
-  const handleLogin = (e) => {
-    e.preventDefault();
+    const handleLogin = () => {
+        if (!email || !password) {
+            setError('Please enter both email and password');
+        } else {
+            console.log("Selected role:", role); // Debug log
 
-    // Fake login: Just save role to localStorage
-    localStorage.setItem('role', role);
+            if (role === 'superadmin') {
+                window.location.href = '/admin/dashboard';
+            } else {
+                window.location.href = '/user/dashboard';
+            }
+        }
+    };
 
-    // Navigate to dashboard based on role
-    if (role === 'admin') {
-      navigate('/admin/dashboard');
-    } else {
-      navigate('/user/dashboard');
-    }
-  };
+    return (
+        <div className="login-wrapper">
+            <div className="left-panel">
+                <img src={characterImg} alt="Character" className="character-img" />
+            </div>
 
-  return (
-    <div style={{ padding: '2rem' }}>
-      <h2>Login to Donut TaskManager</h2>
-      <form onSubmit={handleLogin}>
-        <input
-          type="email"
-          placeholder="Email"
-          required
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        /><br /><br />
-        <select value={role} onChange={(e) => setRole(e.target.value)}>
-          <option value="user">User</option>
-          <option value="admin">Super Admin</option>
-        </select><br /><br />
-        <button type="submit">Login</button>
-      </form>
-    </div>
-  );
+            <div className="right-panel">
+                <div className="login-box">
+                    <div className="logo">🍩 Donut Task Manager</div>
+                    <h2>Login to your Account</h2>
+
+                    <div className="role-toggle">
+                        <button
+                            className={role === 'superadmin' ? 'active' : ''}
+                            onClick={() => setRole('superadmin')}
+                        >
+                            Super Admin
+                        </button>
+                        <button
+                            className={role === 'user' ? 'active' : ''}
+                            onClick={() => setRole('user')}
+                        >
+                            User
+                        </button>
+                    </div>
+
+                    <input
+                        type="email"
+                        className="input-field"
+                        placeholder="Email Id"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                    <input
+                        type="password"
+                        className="input-field"
+                        placeholder="Password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                    {error && <div className="error">{error}</div>}
+                    <button className="login-btn" onClick={handleLogin}>
+                        Login
+                    </button>
+
+                    <div className="forgot">I forgot my credentials</div>
+                </div>
+            </div>
+        </div>
+    );
 }
 
 export default Login;
