@@ -1,5 +1,5 @@
 function DashboardUser() {
-  return <h2>Welcome, User!11111 👤</h2>;
+  return <h2>Welcome, User! 👤</h2>;
 }
 
 export default DashboardUser;
