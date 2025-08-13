@@ -17,14 +17,21 @@ body {
 
 /* Sidebar */
 .sidebar {
-  background: linear-gradient(to bottom, #D7F0AF, #90D0A0);
-
-  color: rgb(255, 255, 255);
-  width: 250px;
+  /* background-color:white; */
+  background-color:linear-gradient(to right, #d0f2a4, #b0e087);
+  padding: 20px;
+  border-radius: 16px;
+  /* box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);  */
+  width: 240px;
+  /* height: calc(100vh - 40px); Responsive height */
+  margin: 20px;
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  justify-content: space-between;
+  position: sticky;
+  top: 20px;
 }
+
 
 .logo {
   font-size: 1.8rem;
@@ -96,13 +103,13 @@ body {
 
 /* Main content */
 .main-content {
-  flex-grow: 1;
-  padding: 25px 40px;
-  overflow-y: auto;
-  background-color: #fff;
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: 24px;
+  padding: 20px;
+  flex: 1;
+  overflow-y: auto;
+  background-color: white;
 }
 
 /* Top bar */
@@ -166,25 +173,39 @@ body {
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
+  margin-bottom: 30px;
 }
 
 .stat-box {
-  background-color: #ecf0f1;
-  padding: 20px 25px;
-  border-radius: 10px;
-  flex: 1 1 150px;
+  background-color: white;
+  padding: 15px 25px;
+  border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  flex: 1 1 180px;
+  position: relative;
+  border-top: 5px solid transparent;
+  text-align: center;
   font-weight: 600;
-  font-size: 1rem;
-  color: #34495e;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+   transition: transform 0.2s ease;
 }
 
 .stat-box span {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: #1abc9c;
+  display: block;
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-top: 8px;
+}
+
+
+.stat-box:nth-child(1) { border-top-color: #000; }       /* Total Tasks */
+.stat-box:nth-child(2) { border-top-color: #FFD700; }    /* Inprogress (Yellow) */
+.stat-box:nth-child(3) { border-top-color: #32CD32; }    /* Completed (Green) */
+.stat-box:nth-child(4) { border-top-color: #FF0000; }    /* High Priority (Red) */
+.stat-box:nth-child(5) { border-top-color: #1E90FF; }    /* Pending (Blue) */
+
+
+.stat-box:hover {
+  transform: scale(1.05);
 }
 
 /* Chart section */
@@ -212,7 +233,10 @@ body {
   border-radius: 10px;
   padding: 20px 25px;
   overflow-x: auto;
+  min-height: 200px; /* Ensures some height */
+  flex-grow: 1;
 }
+
 
 .recent-tasks h3 {
   margin-top: 0;
@@ -235,6 +259,45 @@ body {
 .recent-tasks tbody tr:hover {
   background-color: #d1f0e7;
 }
+
+.recent-tasks table {
+  min-width: 600px; /* Prevent shrinking */
+}
+
+.recent-tasks {
+  overflow: auto;
+  max-height: 300px; /* Add scrolling if needed */
+}
+/* Department Tags */
+.dept-tag {
+  padding: 4px 10px;
+  border-radius: 20px;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.gst { background-color: #FF6600; }           /* GST */
+.income-tax { background-color: #0027FF; }    /* Income Tax */
+.roc { background-color: #FF0057; }           /* ROC */
+.certifications { background-color: #8E44AD; }/* Certifications */
+.customer-details { background-color: #16A085; } /* Customer Details */
+
+/* Status Tags */
+.status-tag {
+  padding: 4px 10px;
+  border-radius: 20px;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.pending { background-color: #3498db; }       /* Blue */
+.inprogress { background-color: #f1c40f; }    /* Yellow */
+.completed { background-color: #2ecc71; }     /* Green */
+.high-priority { background-color: #e74c3c; } /* Red */
 
 /* Activity log */
 .activity-log {
@@ -259,6 +322,46 @@ body {
 .activity-log li {
   margin-bottom: 8px;
 }
+
+.dept-card {
+  background-color: white;
+  padding: 16px 20px;
+  border-radius: 12px;
+  font-weight: 600;
+  text-align: center;
+  flex: 1 1 160px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+  border-top: 5px solid transparent;
+  color: #2c3e50;
+}
+
+.dept-card span {
+  display: block;
+  font-weight: 400;
+  font-size: 0.95rem;
+  margin-top: 5px;
+}
+
+.dept-card:hover {
+  transform: scale(1.05);
+}
+
+.chart-section {
+  background-color: #ecf0f1;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+  min-height: 300px;
+}
+
+
+.dept-card.gst { border-top-color: #FF6600; }
+.dept-card.it { border-top-color: #0027FF; }
+.dept-card.roc { border-top-color: #FF0057; }
+.dept-card.cert { border-top-color: #8E44AD; }
+.dept-card.customer { border-top-color: #16A085; }
+
 
 /* Responsive */
 @media (max-width: 768px) {

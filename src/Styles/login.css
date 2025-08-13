@@ -134,7 +134,7 @@ h2 {
 
 .left-panel {
   flex: 1;
-  background: linear-gradient(to right, #d0f2a4, #b0e087);
+  /* background: linear-gradient(to right, #d0f2a4, #b0e087); */
   display: flex;
   justify-content: center;
   align-items: center;
