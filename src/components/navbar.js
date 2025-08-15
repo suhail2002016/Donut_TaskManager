@@ -25,7 +25,8 @@ const Layout = () => {
           >
             <FaTasks /> Tasks
           </button>
-          <button><FaBuilding /> Departments</button>
+          <button className={location.pathname === '/admin/departments' ? 'active' : ''}
+            onClick={() => navigate('/admin/departments')}><FaBuilding /> Departments</button>
           <button className="new-user">Create a new User</button>
         </nav>
         <div className="settings"><FaCog /> Settings</div>
