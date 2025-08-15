@@ -15,15 +15,16 @@ body {
   height: 100vh;
 }
 
+.dashboard-container .sidebar {
+  background-color: #d0f2a4 !important;
+}
+
 /* Sidebar */
 .sidebar {
-  /* background-color:white; */
-  background-color:linear-gradient(to right, #d0f2a4, #b0e087);
   padding: 20px;
   border-radius: 16px;
-  /* box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);  */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08); 
   width: 240px;
-  /* height: calc(100vh - 40px); Responsive height */
   margin: 20px;
   display: flex;
   flex-direction: column;
@@ -31,7 +32,6 @@ body {
   position: sticky;
   top: 20px;
 }
-
 
 .logo {
   font-size: 1.8rem;
@@ -389,3 +389,62 @@ body {
     flex-direction: column;
   }
 }
+
+.calendar-popup {
+  position: absolute;
+  top: 70px; /* Adjust based on your header */
+  right: 30px;
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 15px rgba(0,0,0,0.15);
+  display: flex;
+  gap: 20px;
+  z-index: 1000;
+}
+
+.calendar-details {
+  width: 200px;
+}
+
+.deadline-item {
+  background: #f8f9fa;
+  padding: 6px;
+  margin-top: 5px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+
+/* Red highlight for deadline days */
+.highlight-deadline {
+  background-color: #ff4d4d !important;
+  color: white !important;
+  border-radius: 50%;
+}
+
+.calendar-popup {
+  position: absolute;
+  top: 70px;
+  right: 30px;
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 15px rgba(0,0,0,0.15);
+  display: flex;
+  gap: 20px;
+  z-index: 1000;
+}
+
+.calendar-details {
+  width: 200px;
+}
+
+.deadline-item {
+  background: #f8f9fa;
+  padding: 6px;
+  margin-top: 5px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+
+

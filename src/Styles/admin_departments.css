@@ -1,0 +1,104 @@
+.departments-page {
+  padding: 20px;
+}
+
+.department-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.department-card {
+  background: white;
+  border-radius: 10px;
+  border-top: 6px solid;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  padding: 15px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.department-card:hover {
+  transform: scale(1.02);
+}
+
+.dept-summary h3 {
+  margin-bottom: 5px;
+}
+
+.dept-details {
+  margin-top: 10px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.staff-info {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 8px;
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+}
+/* Existing styles from before remain here */
+
+/* Clickable staff */
+.clickable {
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.clickable:hover {
+  background: #e6f7ff;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  width: 80%;
+  max-width: 800px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.modal-content h3 {
+  margin-bottom: 15px;
+}
+
+.modal-content table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.modal-content th,
+.modal-content td {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+.close-btn {
+  margin-top: 15px;
+  padding: 8px 12px;
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.close-btn:hover {
+  background: #2980b9;
+}
