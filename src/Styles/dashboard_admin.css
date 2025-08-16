@@ -1,4 +1,4 @@
-/* Dashboard.css */
+Dashboard.css
 
 body {
   margin: 0;
@@ -201,7 +201,7 @@ body {
 .stat-box:nth-child(2) { border-top-color: #FFD700; }    /* Inprogress (Yellow) */
 .stat-box:nth-child(3) { border-top-color: #32CD32; }    /* Completed (Green) */
 .stat-box:nth-child(4) { border-top-color: #FF0000; }    /* High Priority (Red) */
-.stat-box:nth-child(5) { border-top-color: #1E90FF; }    /* Pending (Blue) */
+.stat-box:nth-child(5) { border-top-color: #1E90FF; }    /* Overdue (Blue) */
 
 
 .stat-box:hover {
@@ -228,46 +228,86 @@ body {
 }
 
 /* Recent tasks */
+/* ===== Recent Tasks Card ===== */
 .recent-tasks {
-  background-color: #ecf0f1;
-  border-radius: 10px;
-  padding: 20px 25px;
-  overflow-x: auto;
-  min-height: 200px; /* Ensures some height */
-  flex-grow: 1;
+  background: #fff;
+  border-radius: 16px;
+  padding: 18px;
+  margin-bottom: 28px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
 }
-
 
 .recent-tasks h3 {
-  margin-top: 0;
-  margin-bottom: 15px;
-  color: #2c3e50;
+  margin: 0 0 12px 0;
+  font-weight: 700;
+  color: #1f2937;
 }
 
+/* Table styling */
 .recent-tasks table {
   width: 100%;
   border-collapse: collapse;
-  text-align: left;
   font-size: 0.95rem;
 }
 
-.recent-tasks th, .recent-tasks td {
-  padding: 12px 15px;
-  border-bottom: 1px solid #bdc3c7;
+.recent-tasks thead th {
+  background: #f3f4f6;
+  color: #374151;
+  text-align: left;
+  padding: 12px 14px;
+  font-weight: 700;
+  border-bottom: 1px solid #e5e7eb;
+  position: sticky;
+  top: 0;               /* keeps headers visible on overflow */
+  z-index: 1;
+}
+
+.recent-tasks td {
+  padding: 12px 14px;
+  border-bottom: 1px solid #f1f5f9;
+  vertical-align: middle;
 }
 
 .recent-tasks tbody tr:hover {
-  background-color: #d1f0e7;
+  background: #f8fafc;
 }
 
-.recent-tasks table {
-  min-width: 600px; /* Prevent shrinking */
+/* ===== Badges ===== */
+.status-badge,
+.dept-badge {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.8rem;
+  line-height: 1;
+  color: #fff;
+  white-space: nowrap;
 }
 
-.recent-tasks {
-  overflow: auto;
-  max-height: 300px; /* Add scrolling if needed */
+/* Status colors */
+.status-badge.pending { background: #f1c40f; }        /* blue */
+.status-badge.completed { background: #2ecc71; }      /* green */
+.status-badge.high-priority { background: #e74c3c; }  /* red */
+.status-badge.overdue { background: #3498db; }        /* treat overdue as red too */
+
+/* Department colors */
+.dept-badge.gst { background: #FF6600; }
+.dept-badge.income-tax { background: #0027FF; }
+.dept-badge.roc { background: #FF0057; }
+.dept-badge.certifications { background: #8E44AD; }
+.dept-badge.customer-details { background: #16A085; }
+
+/* Responsive niceties */
+@media (max-width: 768px) {
+  .recent-tasks table {
+    font-size: 0.9rem;
+  }
+  .recent-tasks td, .recent-tasks th {
+    padding: 10px 12px;
+  }
 }
+
 /* Department Tags */
 .dept-tag {
   padding: 4px 10px;
@@ -445,6 +485,371 @@ body {
   margin-top: 5px;
   border-radius: 6px;
   font-size: 0.85rem;
+}
+
+/* Shared stat card layout stays the same; add these: */
+.stat-box {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Icon bubble */
+.stat-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+/* Per-card themes */
+.stat-total { border-top-color: #34495e; }
+.stat-total .stat-icon { background: #34495e; }
+
+.stat-pending { border-top-color: #f1c40f; }
+.stat-pending .stat-icon { background: #f1c40f; color: #ffffff; }
+
+.stat-completed { border-top-color: #2ecc71; }
+.stat-completed .stat-icon { background: #2ecc71; }
+
+.stat-priority { border-top-color: #FF0000; }
+.stat-priority .stat-icon { background: #FF0000; }
+
+.stat-overdue { border-top-color: #1E90FF; }
+.stat-overdue .stat-icon { background: #1E90FF; }
+
+
+/* 🌟 General Dashboard Layout */
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+  /* background: linear-gradient(135deg, #eef2f3, #8e9eab); */
+  font-family: "Poppins", sans-serif;
+  color: #2c3e50;
+}
+
+/* 🌟 Main Content */
+.main-content {
+  flex: 1;
+  padding: 25px;
+  background:   #f5f7fa;;
+  backdrop-filter: blur(12px);
+  /* border-radius: 16px; */
+  /* margin: 15px; */
+  overflow-y: auto;
+}
+
+/* 🌟 Top Bar */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.top-bar h2 {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.create-task {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #2ecc71;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.create-task:hover {
+  background: #27ae60;
+  transform: translateY(-2px);
+}
+
+.icon {
+  font-size: 1.3rem;
+  cursor: pointer;
+  color: #2c3e50;
+  transition: transform 0.2s, color 0.2s;
+}
+
+.icon:hover {
+  transform: scale(1.2);
+  color: #3498db;
+}
+
+.avatar {
+  border-radius: 50%;
+  border: 2px solid #3498db;
+}
+
+/* 🌟 Calendar Popup */
+.calendar-popup {
+  position: absolute;
+  top: 80px;
+  right: 25px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  padding: 20px;
+  z-index: 2000;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.highlight-deadline {
+  background: #e74c3c !important;
+  color: white !important;
+  border-radius: 50%;
+}
+
+.calendar-details {
+  margin-top: 15px;
+}
+
+.deadline-item {
+  background: rgba(46, 204, 113, 0.1);
+  border-left: 5px solid #2ecc71;
+  padding: 10px 15px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.deadline-item strong {
+  display: block;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+/* 🌟 Stats Section */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 18px;
+  margin-bottom: 30px;
+}
+
+.stat-box {
+  background: rgba(255, 255, 255, 0.85);
+  padding: 20px;
+  border-radius: 16px;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #2c3e50;
+  border-top: 5px solid #3498db;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.stat-box span {
+  display: block;
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-top: 8px;
+  color: #2c3e50;
+}
+
+.stat-box:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* 🌟 Chart Section */
+.chart-section {
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
+}
+
+/* 🌟 Recent Tasks */
+.recent-tasks {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+.recent-tasks table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.recent-tasks th, .recent-tasks td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.recent-tasks tbody tr:hover {
+  background: #f0f9ff;
+}
+
+.dept-tag, .status-tag {
+  padding: 6px 12px;
+  border-radius: 20px;
+  color: white;
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+.dept-tag.gst { background: #FF6600; }
+.dept-tag.roc { background: #FF0057; }
+.dept-tag.income-tax { background: #0027FF; }
+.status-tag.pending { background: #f1c40f; color: #2c3e50; }
+.status-tag.completed { background: #2ecc71; }
+.status-tag.inprogress { background: #3498db; }
+
+/* 🌟 Activity Logs */
+.activity-log {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+.activity-log ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.activity-log li {
+  margin-bottom: 8px;
+  color: #555;
+}
+
+/* 🌟 Department Overview */
+.departments {
+  background: white;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+/* 🌟 Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.activity-log ul {
+  list-style: none;
+  padding-left: 20px;
+  position: relative;
+}
+
+.activity-log ul::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #3498db; /* timeline line */
+}
+
+.activity-log li {
+  position: relative;
+  margin-bottom: 20px;
+  padding-left: 20px;
+  font-size: 0.95rem;
+  color: #2c3e50;
+}
+
+.activity-log li::before {
+  content: '';
+  position: absolute;
+  left: -2px;
+  top: 6px;
+  width: 10px;
+  height: 10px;
+  background: #3498db;
+  border-radius: 50%;
+}
+
+.modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.6);
+  /* display: flex; */
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  width: 400px;
+  box-shadow: 0px 8px 20px rgba(0,0,0,0.2);
+}
+
+.modal-content h3 {
+  margin-bottom: 15px;
+  color: #2c3e50;
+}
+
+.modal-content label {
+  display: block;
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+.modal-content input,
+.modal-content textarea,
+.modal-content select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+/* red bubble in the corner of date tile */
+.deadline-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: #e74c3c;
+  border-radius: 50%;
+  position: absolute;
+  right: 6px;
+  bottom: 6px;
+}
+
+/* or tint the whole tile */
+.deadline-day {
+  position: relative;
+  background: rgba(231, 76, 60, 0.12) !important;
+  border-radius: 8px;
+}
+
+/* ensure calendar tiles can position the dot */
+.react-calendar__tile {
+  position: relative;
 }
 
 
